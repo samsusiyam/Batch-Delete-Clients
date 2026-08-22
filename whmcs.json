@@ -1,0 +1,46 @@
+{
+    "schema": "1.0",
+    "type": "whmcs-addon",
+    "name": "batch_delete_clients",
+    "license": "GPL-2.0+",
+    "category": "administration",
+    "description": {
+        "name": "Batch Delete Clients",
+        "tagline": "Easily filter, select, and bulk delete inactive clients, zero-service accounts, or orphaned affiliates in WHMCS.",
+        "long": "Batch Delete Clients is a modern, powerful, and safe WHMCS addon module designed to help web hosting providers clean up inactive and redundant client accounts. Quickly filter clients who have zero active services or domains, search across client details, and securely bulk-delete them with a single click and safety confirmation.",
+        "features": [
+            "Bulk delete clients with 0 active hosting services",
+            "Filter and delete affiliate accounts with 0 services and 0 domains",
+            "Real-time client search by ID, Name, Email, or Company",
+            "Modern, responsive, and intuitive Admin Dashboard UI/UX",
+            "Interactive overview stat cards for quick database insights",
+            "Direct one-click access to WHMCS client profiles",
+            "Safe deletion confirmation modal to prevent accidental data loss",
+            "Standard WHMCS LocalAPI integration with cascading database cleanup",
+            "Activity log integration for full auditability"
+        ]
+    },
+    "logo": {
+        "filename": "logo.png"
+    },
+    "authors": [
+        {
+            "name": "Host Nibo",
+            "homepage": "https://hostnibo.com",
+            "url": "https://hostnibo.com",
+            "email": "support@hostnibo.com"
+        }
+    ],
+    "support": {
+        "homepage": "https://hostnibo.com",
+        "url": "https://hostnibo.com/contact",
+        "contact": "https://hostnibo.com/contact",
+        "docs_url": "https://hostnibo.com"
+    },
+    "version": "2.0.0",
+    "whmcs": {
+        "versions": {
+            "minimum": "7.0.0"
+        }
+    }
+}

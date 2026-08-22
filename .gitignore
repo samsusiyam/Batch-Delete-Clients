@@ -1,0 +1,4 @@
+# Development sources & temporary files
+*.src.php
+*.obf.php
+storage/license/*.json

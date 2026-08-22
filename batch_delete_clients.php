@@ -32,7 +32,7 @@ function batch_delete_clients_config() {
                 'FriendlyName' => 'License Key',
                 'Type'         => 'text',
                 'Size'         => '40',
-                'Description'  => 'Enter your Host Nibo ELMS license key (e.g. BDC-XXXX-XXXX-XXXX-XXXX)',
+                'Description'  => 'Enter your Host Nibo ELMS license key',
                 'Default'      => ''
             ]
         ]

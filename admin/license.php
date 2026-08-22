@@ -312,7 +312,7 @@ $moduleUrl = 'addonmodules.php?module=batch_delete_clients';
         <form method="POST">
             <div class="hn-form-group">
                 <label for="license_key">Product License Key:</label>
-                <input type="text" id="license_key" name="license_key" class="hn-lic-input" placeholder="BDC-XXXX-XXXX-XXXX-XXXX" value="<?php echo htmlspecialchars($details['license_key']); ?>" required autocomplete="off">
+                <input type="text" id="license_key" name="license_key" class="hn-lic-input" placeholder="Enter your license key..." value="<?php echo htmlspecialchars($details['license_key']); ?>" required autocomplete="off">
                 <span style="font-size: 12px; color: #64748b; margin-top: 6px; display: block;">
                     Enter the license key provided upon purchase or assigned in your Host Nibo Client Portal.
                 </span>

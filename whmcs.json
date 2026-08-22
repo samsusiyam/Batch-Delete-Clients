@@ -17,7 +17,8 @@
             "Direct one-click access to WHMCS client profiles",
             "Safe deletion confirmation modal to prevent accidental data loss",
             "Standard WHMCS LocalAPI integration with cascading database cleanup",
-            "Activity log integration for full auditability"
+            "Activity log integration for full auditability",
+            "Protected with Host Nibo ELMS Real-time Licensing System"
         ]
     },
     "logo": {

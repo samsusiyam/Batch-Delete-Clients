@@ -12,7 +12,10 @@ if (!defined("WHMCS")) {
     die("This file cannot be accessed directly");
 }
 
+require_once __DIR__ . '/app/License/LicenseManager.php';
+
 use WHMCS\Database\Capsule;
+use BatchDeleteClients\License\LicenseManager;
 
 /**
  * Module configuration parameters
@@ -20,11 +23,19 @@ use WHMCS\Database\Capsule;
 function batch_delete_clients_config() {
     return [
         'name'        => 'Batch Delete Clients',
-        'description' => 'A modern and powerful WHMCS addon module to easily search, filter, and batch delete inactive clients, zero-service accounts, or orphaned affiliates. Designed & Developed by <a href="https://hostnibo.com" target="_blank" style="color: #2563eb; font-weight: 600; text-decoration: none;">Host Nibo</a>. For help and support, please visit <a href="https://hostnibo.com/contact" target="_blank" style="color: #2563eb; text-decoration: none;">Host Nibo Support</a>.',
+        'description' => 'A modern and powerful WHMCS addon module to easily search, filter, and batch delete inactive clients, zero-service accounts, or orphaned affiliates. Protected with Host Nibo ELMS Licensing. Designed & Developed by <a href="https://hostnibo.com" target="_blank" style="color: #2563eb; font-weight: 600; text-decoration: none;">Host Nibo</a>. For support, visit <a href="https://hostnibo.com/contact" target="_blank" style="color: #2563eb; text-decoration: none;">Host Nibo Support</a>.',
         'version'     => '2.0.0',
         'author'      => '<a href="https://hostnibo.com" target="_blank" style="color: #2563eb; font-weight: 600; text-decoration: none;">Host Nibo</a>',
         'language'    => 'english',
-        'fields'      => []
+        'fields'      => [
+            'license_key' => [
+                'FriendlyName' => 'License Key',
+                'Type'         => 'text',
+                'Size'         => '40',
+                'Description'  => 'Enter your Host Nibo ELMS license key (e.g. BDC-XXXX-XXXX-XXXX-XXXX)',
+                'Default'      => ''
+            ]
+        ]
     ];
 }
 
@@ -52,6 +63,20 @@ function batch_delete_clients_deactivate() {
  * Admin area module output
  */
 function batch_delete_clients_output($vars) {
+    $action = $_GET['action'] ?? '';
+
+    // 🔒 ELMS License Gatekeeper: Lock access if unlicensed
+    $isLicensed = LicenseManager::isLicensed(true);
+    if (!$isLicensed && $action !== 'license') {
+        require_once __DIR__ . '/admin/license.php';
+        return;
+    }
+
+    if ($action === 'license') {
+        require_once __DIR__ . '/admin/license.php';
+        return;
+    }
+
     $moduleLink = 'addonmodules.php?module=batch_delete_clients';
 
     // Handle Deletion
@@ -223,6 +248,15 @@ function batch_delete_clients_output($vars) {
             padding: 2px 8px;
             border-radius: 20px;
             letter-spacing: 0.5px;
+        }
+        .hn-lic-status-badge {
+            font-size: 11px;
+            font-weight: 600;
+            background: #ecfdf5;
+            color: #059669;
+            border: 1px solid #a7f3d0;
+            padding: 2px 8px;
+            border-radius: 20px;
         }
         .hn-header-titles p {
             margin: 0;
@@ -798,11 +832,15 @@ function batch_delete_clients_output($vars) {
                     <h1>
                         Batch Delete Clients
                         <span class="hn-version-badge">v2.0.0</span>
+                        <span class="hn-lic-status-badge"><i class="fa fa-shield"></i> Licensed</span>
                     </h1>
                     <p>Clean up, filter, and batch delete inactive or zero-service client accounts in WHMCS.</p>
                 </div>
             </div>
             <div class="hn-header-actions">
+                <a href="<?php echo htmlspecialchars($moduleLink . '&action=license'); ?>" class="hn-btn hn-btn-outline" title="Manage License">
+                    <i class="fa fa-key"></i> License
+                </a>
                 <a href="https://hostnibo.com" target="_blank" class="hn-btn hn-btn-outline">
                     <i class="fa fa-globe"></i> Visit Host Nibo
                 </a>
@@ -1149,6 +1187,7 @@ function batch_delete_clients_output($vars) {
             </div>
             <div>
                 Developed with pride by <a href="https://hostnibo.com" target="_blank">Host Nibo</a> &bull;
+                <a href="<?php echo htmlspecialchars($moduleLink . '&action=license'); ?>">License Info</a> &bull;
                 <a href="https://hostnibo.com/contact" target="_blank">Contact Support</a>
             </div>
         </div>

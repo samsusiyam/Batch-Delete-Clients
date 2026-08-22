@@ -208,13 +208,20 @@ class LicenseManager
     public function getDetails(bool $refreshLive = false): array
     {
         $key = $this->getLicenseKey();
-        $details = ['status' => 'unlicensed', 'expiry' => 'Lifetime'];
+        $details = [
+            'status'       => 'unlicensed',
+            'expiry'       => 'Lifetime',
+            'product_name' => 'Batch Delete Clients',
+            'product_key'  => $this->productKey,
+        ];
 
         if (!empty($key)) {
             $check = $refreshLive ? $this->verify(true) : ($this->readCache($key, $this->getDomain()) ?? $this->verify(true));
             if (!empty($check['status'])) {
-                $details['status'] = 'active';
-                $details['expiry'] = $check['data']['expiry'] ?? ($check['data']['expires_at'] ?? 'Lifetime');
+                $details['status']       = 'active';
+                $details['expiry']       = $check['data']['expiry'] ?? ($check['data']['expires_at'] ?? 'Lifetime');
+                $details['product_name'] = $check['data']['product_name'] ?? ($check['data']['product'] ?? 'Batch Delete Clients');
+                $details['product_key']  = $check['data']['product_key'] ?? $this->productKey;
             } else {
                 $msg = strtolower($check['message'] ?? '');
                 if (strpos($msg, 'suspend') !== false) {
@@ -225,6 +232,8 @@ class LicenseManager
                     $details['status'] = 'domain_mismatch';
                 } elseif (strpos($msg, 'expired') !== false) {
                     $details['status'] = 'expired';
+                } elseif (strpos($msg, 'mismatch') !== false || strpos($msg, 'product') !== false) {
+                    $details['status'] = 'product_mismatch';
                 } else {
                     $details['status'] = 'invalid';
                 }
@@ -236,15 +245,16 @@ class LicenseManager
             : (!empty($key) ? '****' : 'None');
 
         return [
-            'license_key' => $key,
-            'masked_key'  => $masked,
-            'status'      => $details['status'],
-            'is_licensed' => ($details['status'] === 'active'),
-            'expiry_date' => $details['expiry'],
-            'domain'      => $this->getDomain(),
-            'ip'          => $this->getIp(),
-            'product_key' => $this->productKey,
-            'server_url'  => $this->serverUrl,
+            'license_key'  => $key,
+            'masked_key'   => $masked,
+            'status'       => $details['status'],
+            'is_licensed'  => ($details['status'] === 'active'),
+            'expiry_date'  => $details['expiry'],
+            'domain'       => $this->getDomain(),
+            'ip'           => $this->getIp(),
+            'product_name' => $details['product_name'] ?? 'Batch Delete Clients',
+            'product_key'  => $details['product_key'] ?? $this->productKey,
+            'server_url'   => $this->serverUrl,
         ];
     }
 

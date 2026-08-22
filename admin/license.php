@@ -293,6 +293,7 @@ $moduleUrl = 'addonmodules.php?module=batch_delete_clients';
                 <?php endif; ?>
             </h3>
             <p class="hn-lic-meta">
+                Product: <strong><?php echo htmlspecialchars($details['product_name']); ?></strong> (<code><?php echo htmlspecialchars($details['product_key']); ?></code>)<br>
                 Domain: <strong><?php echo htmlspecialchars($details['domain']); ?></strong> &bull;
                 Server IP: <strong><?php echo htmlspecialchars($details['ip']); ?></strong><br>
                 Expiry Date: <strong><?php echo htmlspecialchars($details['expiry_date']); ?></strong> &bull;

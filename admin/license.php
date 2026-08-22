@@ -288,10 +288,27 @@ $moduleUrl = 'addonmodules.php?module=batch_delete_clients';
             <h3 style="color: <?php echo $status === 'active' ? '#166534' : '#991b1b'; ?>;">
                 <?php if ($status === 'active'): ?>
                     <i class="fa fa-check-circle"></i> License Status: ACTIVE
+                <?php elseif ($status === 'expired'): ?>
+                    <i class="fa fa-calendar-times-o"></i> License Status: EXPIRED
+                <?php elseif ($status === 'suspended'): ?>
+                    <i class="fa fa-ban"></i> License Status: SUSPENDED
+                <?php elseif ($status === 'domain_mismatch'): ?>
+                    <i class="fa fa-globe"></i> License Status: DOMAIN MISMATCH
+                <?php elseif ($status === 'product_mismatch'): ?>
+                    <i class="fa fa-cubes"></i> License Status: PRODUCT MISMATCH
                 <?php else: ?>
                     <i class="fa fa-exclamation-triangle"></i> License Status: <?php echo strtoupper(str_replace('_', ' ', $status)); ?>
                 <?php endif; ?>
             </h3>
+            <?php if ($status === 'expired'): ?>
+                <div style="background: #fee2e2; color: #991b1b; padding: 6px 12px; border-radius: 6px; font-size: 12.5px; margin: 4px 0 8px 0; font-weight: 600;">
+                    <i class="fa fa-clock-o"></i> Your license subscription has expired. Please renew your license to continue using this module.
+                </div>
+            <?php elseif ($status === 'suspended'): ?>
+                <div style="background: #fee2e2; color: #991b1b; padding: 6px 12px; border-radius: 6px; font-size: 12.5px; margin: 4px 0 8px 0; font-weight: 600;">
+                    <i class="fa fa-ban"></i> This license has been suspended. Please contact Host Nibo Support.
+                </div>
+            <?php endif; ?>
             <p class="hn-lic-meta">
                 Product: <strong><?php echo htmlspecialchars($details['product_name']); ?></strong> (<code><?php echo htmlspecialchars($details['product_key']); ?></code>)<br>
                 Domain: <strong><?php echo htmlspecialchars($details['domain']); ?></strong> &bull;

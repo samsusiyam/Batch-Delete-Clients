@@ -1,8 +1,78 @@
 <?php
-/*   __________________________________________________
-    |  Obfuscated by YAK Pro - Php Obfuscator  3.0.0   |
-    |              on 2026-08-22 20:45:41              |
-    |    GitHub: https://github.com/pk-fr/yakpro-po    |
-    |__________________________________________________|
-*/
- if (defined("\127\110\x4d\103\123")) { goto qgveH; } die("\x54\x68\x69\x73\x20\146\x69\x6c\x65\40\x63\x61\156\156\157\164\40\142\x65\x20\141\x63\x63\145\x73\x73\x65\144\40\144\151\162\145\143\164\x6c\x79"); qgveH: use WHMCS\Database\Capsule; function batch_delete_clients_delete() { goto JDOor; h6nF4: dMXZ4: goto kRzDd; YbxeH: if (!($_SERVER["\122\x45\121\125\105\x53\124\x5f\x4d\x45\x54\110\x4f\104"] === "\120\x4f\x53\124" && !empty($_POST["\143\x6c\x69\x65\156\x74\137\x69\144\x73"]))) { goto dMXZ4; } goto HdAHJ; JDOor: $Kky_M = ["\163\x75\x63\x63\145\163\163" => [], "\145\162\x72\157\162\163" => []]; goto YbxeH; YREQ8: xYoSF: goto h6nF4; B8Yye: foreach ($LXovl as $wTZlF) { goto AKU1R; Mpdiy: goto FadR_; goto PYwx6; t5y13: if (!($wTZlF <= 0)) { goto WrLuH; } goto Mpdiy; vwCJ3: try { goto fNYN_; l4Hi9: if (!(isset($Fq0rA["\x72\145\x73\x75\154\x74"]) && strtolower($Fq0rA["\x72\145\163\x75\154\x74"]) === "\163\165\143\x63\145\x73\163")) { goto kjLbd; } goto Vj_sh; Vj_sh: $PDYGx = true; goto Cchpo; QwHxe: Capsule::table("\x74\142\x6c\150\x6f\163\x74\151\x6e\x67")->where("\x75\x73\x65\162\x69\144", $wTZlF)->delete(); goto QRmU2; SAGL4: Capsule::table("\164\142\x6c\x69\x6e\166\x6f\151\x63\x65\x73")->where("\165\163\x65\x72\x69\x64", $wTZlF)->delete(); goto L5PKI; L5PKI: Capsule::table("\164\x62\x6c\164\x69\x63\x6b\x65\x74\163")->where("\165\163\145\x72\x69\x64", $wTZlF)->delete(); goto nRTDI; sUJt6: Capsule::table("\x74\142\154\143\x6c\x69\145\x6e\164\163")->where("\151\x64", $wTZlF)->delete(); goto QwHxe; ERJCL: if ($PDYGx) { goto BO4sD; } goto sUJt6; fOUyN: if (!function_exists("\x6c\x6f\147\101\143\x74\x69\166\151\164\171")) { goto gleq5; } goto Vrr2t; Ut6t8: $Fq0rA = localAPI("\x44\x65\154\x65\x74\x65\103\x6c\151\145\x6e\x74", ["\143\154\x69\145\156\164\x69\x64" => $wTZlF, "\x64\x65\x6c\145\164\x65\165\163\145\x72\x73" => true, "\x64\x65\154\x65\164\145\164\162\141\156\x73\x61\x63\164\151\x6f\x6e\163" => true]); goto l4Hi9; Cchpo: kjLbd: goto CfsEx; ZNf3Y: Capsule::table("\x74\142\154\x6e\x6f\x74\x65\x73")->where("\x75\163\x65\162\151\144", $wTZlF)->delete(); goto isC3x; nRTDI: Capsule::table("\164\142\x6c\141\143\x74\151\166\x69\164\171\x6c\x6f\x67")->where("\x75\163\x65\162\151\x64", $wTZlF)->delete(); goto ZNf3Y; xy1Sx: gleq5: goto fTFSz; QRmU2: Capsule::table("\164\x62\154\144\x6f\155\x61\x69\156\163")->where("\165\x73\145\162\151\x64", $wTZlF)->delete(); goto mfKxr; Vrr2t: logActivity("\x48\157\x73\x74\x20\x4e\151\142\157\x20\102\141\x74\143\x68\40\104\x65\154\x65\164\x65\x20\x4d\157\x64\165\154\145\x3a\40\x50\145\x72\155\141\156\x65\x6e\164\154\x79\x20\144\x65\154\x65\x74\x65\x64\40\103\x6c\x69\145\156\x74\x20\111\104\x20\43{$wTZlF}"); goto xy1Sx; isC3x: Capsule::table("\x74\142\x6c\x61\x63\x63\x6f\x75\156\x74\163")->where("\165\x73\145\162\151\144", $wTZlF)->delete(); goto k3qgr; inb4v: if (!function_exists("\154\157\x63\141\x6c\x41\120\x49")) { goto WMsMw; } goto Ut6t8; fNYN_: $PDYGx = false; goto inb4v; fTFSz: $Kky_M["\x73\165\x63\143\145\163\163"][] = $wTZlF; goto WQD3R; CfsEx: WMsMw: goto ERJCL; mfKxr: Capsule::table("\x74\142\154\x61\146\x66\x69\x6c\x69\141\164\x65\163")->where("\x63\154\151\x65\x6e\164\x69\x64", $wTZlF)->delete(); goto SAGL4; k3qgr: BO4sD: goto fOUyN; WQD3R: } catch (\Exception $s2YE0) { $Kky_M["\x65\162\x72\157\x72\x73"][] = "\x43\x6c\x69\x65\156\164\x20\x23{$wTZlF}\72\x20" . $s2YE0->getMessage(); } goto GgcYo; GgcYo: FadR_: goto tXUfT; AKU1R: $wTZlF = intval($wTZlF); goto t5y13; PYwx6: WrLuH: goto vwCJ3; tXUfT: } goto YREQ8; HdAHJ: $LXovl = is_array($_POST["\143\154\151\145\156\164\x5f\x69\x64\x73"]) ? $_POST["\143\154\x69\145\x6e\x74\137\x69\x64\x73"] : [$_POST["\143\x6c\x69\x65\x6e\x74\137\x69\144\163"]]; goto B8Yye; kRzDd: return $Kky_M; goto F1cFL; F1cFL: }
+/**
+ * WHMCS Batch Delete Clients Module
+ *
+ * Developed by Host Nibo
+ * Website: https://hostnibo.com
+ * Support: https://hostnibo.com/contact
+ */
+
+if (!defined("WHMCS")) {
+    die("This file cannot be accessed directly");
+}
+
+use WHMCS\Database\Capsule;
+
+/**
+ * Handle batch deletion of selected clients
+ *
+ * @return array Array containing success client IDs and error messages
+ */
+function batch_delete_clients_delete() {
+    $results = [
+        'success' => [],
+        'errors'  => []
+    ];
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['client_ids'])) {
+        $clientIds = is_array($_POST['client_ids']) ? $_POST['client_ids'] : [$_POST['client_ids']];
+
+        foreach ($clientIds as $clientId) {
+            $clientId = intval($clientId);
+            if ($clientId <= 0) {
+                continue;
+            }
+
+            try {
+                $deleted = false;
+
+                // 1. Try WHMCS Local API first for standard cascade deletion and hook triggering
+                if (function_exists('localAPI')) {
+                    $apiResult = localAPI('DeleteClient', [
+                        'clientid'           => $clientId,
+                        'deleteusers'        => true,
+                        'deletetransactions' => true
+                    ]);
+
+                    if (isset($apiResult['result']) && strtolower($apiResult['result']) === 'success') {
+                        $deleted = true;
+                    }
+                }
+
+                // 2. Direct database cleanup if localAPI is not available or encounters issues
+                if (!$deleted) {
+                    Capsule::table('tblclients')->where('id', $clientId)->delete();
+                    Capsule::table('tblhosting')->where('userid', $clientId)->delete();
+                    Capsule::table('tbldomains')->where('userid', $clientId)->delete();
+                    Capsule::table('tblaffiliates')->where('clientid', $clientId)->delete();
+                    Capsule::table('tblinvoices')->where('userid', $clientId)->delete();
+                    Capsule::table('tbltickets')->where('userid', $clientId)->delete();
+                    Capsule::table('tblactivitylog')->where('userid', $clientId)->delete();
+                    Capsule::table('tblnotes')->where('userid', $clientId)->delete();
+                    Capsule::table('tblaccounts')->where('userid', $clientId)->delete();
+                }
+
+                // Log WHMCS activity
+                if (function_exists('logActivity')) {
+                    logActivity("Host Nibo Batch Delete Module: Permanently deleted Client ID #{$clientId}");
+                }
+
+                $results['success'][] = $clientId;
+            } catch (\Exception $e) {
+                $results['errors'][] = "Client #{$clientId}: " . $e->getMessage();
+            }
+        }
+    }
+
+    return $results;
+}

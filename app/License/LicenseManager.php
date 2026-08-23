@@ -1,8 +1,332 @@
 <?php
-/*   __________________________________________________
-    |  Obfuscated by YAK Pro - Php Obfuscator  3.0.0   |
-    |              on 2026-08-22 20:45:41              |
-    |    GitHub: https://github.com/pk-fr/yakpro-po    |
-    |__________________________________________________|
-*/
- namespace BatchDeleteClients\License; use WHMCS\Database\Capsule; class LicenseManager { public const DEFAULT_SERVER_URL = "\x68\x74\x74\160\163\72\x2f\x2f\x6c\151\143\x2e\x68\157\x73\x74\156\151\x62\x6f\56\143\157\x6d"; public const DEFAULT_PRODUCT_KEY = "\x42\101\x54\x43\x48\55\104\105\x4c\x45\124\105\x2d\103\x4c\111\x45\116\124\123"; public const CACHE_TTL_SECONDS = 900; private static ?self $s3D3C = null; private string $owVvG; private string $vQUVB; private string $P0lRP; public function __construct() { goto NY0P2; rz3dJ: $this->P0lRP = dirname(__DIR__, 2) . "\x2f\163\164\x6f\162\x61\x67\x65\57\154\151\x63\145\156\163\x65"; goto QYpK2; NY0P2: $this->owVvG = self::DEFAULT_SERVER_URL; goto itR1H; Iqv7E: DL2nc: goto wCjfG; wtChM: @mkdir($this->P0lRP, 0775, true); goto Iqv7E; QYpK2: if (is_dir($this->P0lRP)) { goto DL2nc; } goto wtChM; itR1H: $this->vQUVB = self::DEFAULT_PRODUCT_KEY; goto rz3dJ; wCjfG: } public static function getInstance(): self { goto cwnRM; cwnRM: if (!(self::$s3D3C === null)) { goto WXDjh; } goto l4HdZ; QO35l: return self::$s3D3C; goto mSsNZ; NAjiS: WXDjh: goto QO35l; l4HdZ: self::$s3D3C = new self(); goto NAjiS; mSsNZ: } public static function isLicensed(?bool $qLiyX = null): bool { goto eEqDS; TleUH: $I3RHp = defined("\101\104\115\111\x4e\x41\x52\105\101") && ADMINAREA; goto svwuB; svwuB: $qLiyX = $I3RHp; goto nbesk; nbesk: zreFM: goto lVeAJ; eEqDS: if (!($qLiyX === null)) { goto zreFM; } goto TleUH; lVeAJ: return self::getInstance()->checkLicenseValid($qLiyX); goto sF3Qy; sF3Qy: } public function getLicenseKey(): string { try { $xfC1F = Capsule::table("\164\142\x6c\x61\144\x64\157\156\x6d\157\144\x75\x6c\145\x73")->where("\155\157\144\165\154\145", "\x62\141\164\143\x68\137\x64\x65\x6c\145\164\x65\x5f\x63\154\x69\145\x6e\164\163")->where("\x73\x65\x74\164\151\156\147", "\154\151\x63\145\156\163\x65\137\153\x65\x79")->value("\166\x61\x6c\x75\x65"); return trim((string) $xfC1F); } catch (\Throwable $JHVas) { return ''; } } public function saveLicenseKey(string $xfC1F): void { $xfC1F = trim($xfC1F); try { Capsule::table("\x74\x62\154\141\x64\144\x6f\x6e\155\157\x64\x75\x6c\x65\163")->updateOrInsert(["\155\x6f\x64\x75\154\x65" => "\x62\x61\x74\x63\x68\x5f\x64\x65\154\x65\164\x65\x5f\143\154\x69\x65\x6e\x74\163", "\x73\145\164\164\x69\156\147" => "\x6c\151\x63\145\156\x73\x65\x5f\153\x65\x79"], ["\x76\141\x6c\165\145" => $xfC1F]); } catch (\Throwable $JHVas) { } } public function getDomain(): string { goto WreDM; WreDM: $yjCcE = $_SERVER["\x48\x54\x54\x50\x5f\x48\117\123\x54"] ?? $_SERVER["\123\x45\122\126\x45\122\137\116\x41\x4d\x45"] ?? "\x6c\x6f\x63\141\154\x68\x6f\163\x74"; goto IDaoX; xK0cw: return strtolower(trim($yjCcE)) ?: "\154\157\x63\141\154\x68\157\x73\164"; goto AOUKL; IDaoX: $yjCcE = preg_replace("\x2f\x3a\134\x64\53\44\x2f", '', (string) $yjCcE); goto xK0cw; AOUKL: } public function getIp(): string { goto ZjhjN; HFsrl: if (!(empty($UsQ23) || $UsQ23 === "\x31\62\x37\x2e\x30\56\60\x2e\x31" || $UsQ23 === "\72\x3a\61")) { goto pBeeS; } goto cUVOz; aXlfA: pBeeS: goto zmNcT; ZjhjN: $UsQ23 = $_SERVER["\123\105\x52\126\105\x52\137\x41\x44\104\122"] ?? $_SERVER["\114\117\x43\101\114\x5f\x41\104\x44\122"] ?? ''; goto HFsrl; zmNcT: return trim($UsQ23); goto MjCB2; cUVOz: $UsQ23 = gethostbyname(gethostname()) ?: "\61\x32\67\x2e\x30\56\60\x2e\61"; goto aXlfA; MjCB2: } public function checkLicenseValid(bool $qLiyX = true): bool { goto orADH; VdQRn: if (!($jyzxF !== null)) { goto P0RhI; } goto O_Sto; I2ShD: if (!empty($xfC1F)) { goto PllPL; } goto ZdVWA; xntpL: j6P07: goto os_xr; dOJe2: $u1hIB = $this->verify(true); goto a9V8A; NMB5t: $u1hIB = $this->verify(true); goto aLavK; aLavK: return !empty($u1hIB["\x73\x74\x61\164\x75\163"]); goto xntpL; obfUh: P0RhI: goto dOJe2; os_xr: $jyzxF = $this->readCache($xfC1F, $this->getDomain()); goto VdQRn; La4yO: if (!$qLiyX) { goto j6P07; } goto NMB5t; a9V8A: return !empty($u1hIB["\163\164\x61\164\165\163"]); goto Mfmd8; ZdVWA: return false; goto Ejdkj; orADH: $xfC1F = $this->getLicenseKey(); goto I2ShD; O_Sto: return !empty($jyzxF["\x73\x74\141\164\x75\163"]); goto obfUh; Ejdkj: PllPL: goto La4yO; Mfmd8: } public function verify(bool $qLiyX = true): array { goto l_b0N; o7EE9: gywO3: goto zpcNH; sMsJy: return ["\163\164\x61\x74\x75\x73" => false, "\155\145\163\163\x61\x67\145" => "\x4e\x6f\x20\x6c\x69\x63\145\156\163\x65\x20\153\x65\x79\x20\x65\156\x74\145\162\145\144\56", "\x64\141\x74\x61" => []]; goto A6p9C; m2_gO: if (!($jyzxF !== null)) { goto gywO3; } goto qjVRP; x4_YF: $UsQ23 = $this->getIp(); goto QoWXP; qjVRP: return $jyzxF; goto o7EE9; nTT6d: $jyzxF = $this->readCache($xfC1F, $yjCcE); goto m2_gO; l_b0N: $xfC1F = $this->getLicenseKey(); goto Rdu61; zpcNH: xoRrg: goto cYwQw; H7JlW: if ($qLiyX) { goto xoRrg; } goto nTT6d; QoWXP: if (!empty($xfC1F)) { goto qaPEg; } goto sMsJy; Rdu61: $yjCcE = $this->getDomain(); goto x4_YF; cYwQw: try { goto rhkp4; rhkp4: $u1hIB = $this->post("\57\x61\x70\x69\x2f\154\151\143\x65\156\163\145\57\166\x65\x72\151\x66\x79", ["\154\151\x63\x65\x6e\163\145\x5f\153\145\x79" => $xfC1F, "\144\157\x6d\141\x69\x6e" => $yjCcE, "\x69\x70" => $UsQ23, "\x70\162\157\x64\x75\143\x74" => $this->vQUVB]); goto yJkru; t24Dj: $this->writeCache($xfC1F, $yjCcE, $UsQ23, $u1hIB); goto Spzyh; yJkru: if (!empty($u1hIB["\x73\x74\x61\164\165\x73"])) { goto GQ559; } goto otHjh; c0Hgg: return $u1hIB; goto s01RF; Spzyh: ak_92: goto c0Hgg; C6td9: GQ559: goto t24Dj; otHjh: $this->clearCache($xfC1F, $yjCcE); goto XygIQ; XygIQ: goto ak_92; goto C6td9; s01RF: } catch (\Throwable $JHVas) { goto Ccnm4; dIVu6: return ["\x73\x74\x61\x74\165\163" => false, "\x6d\145\x73\163\141\147\x65" => $JHVas->getMessage(), "\144\141\x74\141" => []]; goto c1NiN; D_tBe: return $jyzxF; goto UBAP7; UBAP7: Ff_uQ: goto dIVu6; bPA8r: if (!($jyzxF !== null)) { goto Ff_uQ; } goto D_tBe; Ccnm4: $jyzxF = $this->readCache($xfC1F, $yjCcE); goto bPA8r; c1NiN: } goto KqUl1; A6p9C: qaPEg: goto H7JlW; KqUl1: } public function activate(string $OurC_): array { goto A2EK8; VlIg6: $yjCcE = $this->getDomain(); goto X3d5E; UlXF7: try { goto SUxGW; IzyvO: $this->writeCache($OurC_, $yjCcE, $UsQ23, $u1hIB); goto yBOEz; g8Ues: $this->clearCache($OurC_, $yjCcE); goto RWsUY; SUxGW: $u1hIB = $this->post("\x2f\x61\160\151\57\154\x69\143\145\x6e\x73\x65\x2f\141\143\x74\x69\166\141\x74\x65", ["\x6c\151\143\x65\x6e\x73\145\137\153\x65\171" => $OurC_, "\144\x6f\x6d\141\x69\x6e" => $yjCcE, "\x69\x70" => $UsQ23, "\160\x72\x6f\144\165\x63\x74" => $this->vQUVB, "\163\145\x72\166\145\162\x5f\150\x6f\x73\x74\156\x61\x6d\x65" => gethostname() ?: "\x75\156\153\x6e\157\x77\x6e"]); goto MwAt9; yBOEz: return ["\163\164\x61\x74\x75\163" => true, "\x6d\x65\163\163\141\147\x65" => "\114\x69\143\x65\156\x73\145\40\x61\x63\x74\151\x76\x61\164\x65\x64\x20\163\165\x63\x63\145\163\163\146\x75\x6c\154\x79\41"]; goto WgCdm; RWsUY: return $u1hIB; goto qxvf8; WgCdm: zoUz0: goto g8Ues; MwAt9: if (!(!empty($u1hIB["\163\164\x61\164\x75\163"]) || ($u1hIB["\x6d\x65\163\163\x61\x67\x65"] ?? '') === "\x41\154\x72\145\141\144\171\40\141\x63\x74\151\166\141\x74\145\x64")) { goto zoUz0; } goto IzyvO; qxvf8: } catch (\Throwable $JHVas) { return ["\x73\164\x61\164\165\x73" => false, "\x6d\145\163\163\141\x67\x65" => "\x41\143\x74\x69\166\141\x74\x69\157\156\x20\146\141\151\154\x65\x64\x3a\x20" . $JHVas->getMessage()]; } goto kGksS; p2Ruf: if (!($OurC_ !== '')) { goto M6itY; } goto jGHwO; X3d5E: $UsQ23 = $this->getIp(); goto UlXF7; DErQU: M6itY: goto VlIg6; A2EK8: $OurC_ = trim($OurC_); goto p2Ruf; jGHwO: $this->saveLicenseKey($OurC_); goto DErQU; kGksS: } public function getDetails(bool $VTN_5 = false): array { goto PtoRT; Ww4MG: return ["\x6c\151\x63\x65\x6e\163\145\x5f\153\x65\x79" => $xfC1F, "\x6d\141\x73\153\145\144\137\x6b\x65\171" => $LdnM0, "\163\164\x61\x74\165\163" => $UiXG_["\163\164\x61\164\165\x73"], "\151\163\x5f\x6c\x69\143\145\x6e\163\x65\x64" => $UiXG_["\163\164\141\x74\165\163"] === "\x61\x63\x74\x69\x76\x65", "\x65\x78\160\151\162\171\x5f\144\x61\164\145" => $UiXG_["\x65\x78\x70\x69\162\x79"], "\144\x6f\x6d\141\x69\156" => $this->getDomain(), "\151\x70" => $this->getIp(), "\160\162\157\144\165\x63\x74\x5f\156\x61\155\x65" => $UiXG_["\160\x72\x6f\144\x75\x63\x74\x5f\x6e\141\x6d\145"] ?? "\102\141\x74\x63\150\40\104\145\154\x65\164\145\x20\x43\154\151\145\156\164\x73", "\x70\x72\x6f\x64\165\x63\164\137\153\145\x79" => $UiXG_["\x70\x72\157\x64\x75\x63\x74\x5f\153\x65\171"] ?? $this->vQUVB, "\x73\x65\x72\166\145\x72\137\x75\162\154" => $this->owVvG]; goto MJX3S; MjbZe: if (strpos($DwvkR, "\155\151\163\155\x61\164\143\x68") !== false || strpos($DwvkR, "\160\x72\x6f\144\165\143\164") !== false) { goto Ed1HO; } goto MbLSO; uQAzg: $LdnM0 = !empty($xfC1F) && strlen($xfC1F) >= 8 ? substr($xfC1F, 0, 4) . "\x2d\x2a\52\52\x2a\55\x2a\52\52\x2a\x2d" . substr($xfC1F, -4) : (!empty($xfC1F) ? "\x2a\x2a\x2a\52" : "\x4e\157\x6e\x65"); goto Ww4MG; z8Xf1: $DwvkR = strtolower($AVsDr["\x6d\x65\163\x73\141\147\x65"] ?? ''); goto fMl1D; qEdAt: Ed1HO: goto zOY1v; KZDcA: $AVsDr = $VTN_5 ? $this->verify(true) : $this->readCache($xfC1F, $this->getDomain()) ?? $this->verify(true); goto TlXVZ; LzGb3: $UiXG_["\x73\x74\x61\164\x75\x73"] = "\x64\x6f\155\x61\151\x6e\x5f\x6d\x69\x73\x6d\141\164\143\x68"; goto cghHr; gmd6e: eS2E_: goto c9WUA; fMl1D: if (strpos($DwvkR, "\x73\165\x73\160\145\156\144") !== false) { goto eS2E_; } goto ZE1UM; jqB6f: $UiXG_["\160\162\157\144\x75\x63\164\137\153\145\171"] = $AVsDr["\144\141\x74\141"]["\160\162\x6f\x64\165\x63\164\137\153\x65\171"] ?? $this->vQUVB; goto aP3H8; g5y8e: $UiXG_ = ["\x73\164\141\164\x75\163" => "\x75\156\x6c\x69\x63\x65\156\x73\145\x64", "\145\170\x70\151\x72\171" => "\114\x69\x66\145\164\151\x6d\145", "\x70\162\x6f\x64\165\143\x74\x5f\156\x61\155\145" => "\102\141\x74\x63\150\40\104\x65\154\145\164\x65\x20\x43\154\151\145\156\164\163", "\x70\x72\x6f\144\165\x63\164\137\x6b\x65\171" => $this->vQUVB]; goto RmQdl; a_Ny9: $UiXG_["\145\170\160\x69\162\x79"] = $AVsDr["\144\141\x74\141"]["\x65\170\160\151\162\171"] ?? $AVsDr["\144\141\x74\x61"]["\145\170\160\x69\162\x65\x73\137\141\164"] ?? "\x4c\151\146\x65\164\151\x6d\145"; goto hExUO; Q8nft: goto CPNsB; goto uOZVo; aP3H8: Ix1Ln: goto C5VFb; uOZVo: C2sKw: goto PR8RX; c9WUA: $UiXG_["\x73\x74\141\x74\165\x73"] = "\x73\x75\163\x70\x65\x6e\144\x65\x64"; goto Q8nft; Jc1N2: goto CPNsB; goto XywRY; RmQdl: if (empty($xfC1F)) { goto embm2; } goto KZDcA; PtoRT: $xfC1F = $this->getLicenseKey(); goto g5y8e; Bncr1: if (strpos($DwvkR, "\x65\x78\x70\x69\162\x65\x64") !== false) { goto lMInS; } goto MjbZe; QVGjO: CPNsB: goto JEGEB; XywRY: dwRt_: goto LzGb3; hExUO: $UiXG_["\x70\162\x6f\x64\165\143\164\x5f\x6e\x61\x6d\145"] = $AVsDr["\x64\141\164\x61"]["\x70\x72\157\x64\x75\143\164\x5f\156\141\x6d\145"] ?? $AVsDr["\144\x61\x74\x61"]["\160\x72\x6f\144\165\x63\x74"] ?? "\x42\x61\x74\x63\150\x20\104\x65\x6c\x65\164\x65\40\103\x6c\151\145\x6e\x74\x73"; goto jqB6f; C5VFb: embm2: goto uQAzg; x3GTx: dQfZ7: goto BS9Gl; K43ZW: if (strpos($DwvkR, "\x64\x6f\x6d\x61\x69\156") !== false) { goto dwRt_; } goto Bncr1; ZE1UM: if (strpos($DwvkR, "\x74\x65\162\155\151\x6e\141\x74\145") !== false) { goto C2sKw; } goto K43ZW; TlXVZ: if (!empty($AVsDr["\163\164\141\164\165\x73"])) { goto dQfZ7; } goto z8Xf1; BS9Gl: $UiXG_["\163\x74\141\x74\165\163"] = "\141\x63\164\x69\x76\x65"; goto a_Ny9; lWjYD: goto CPNsB; goto qEdAt; N8Kvl: lMInS: goto nYB2G; cghHr: goto CPNsB; goto N8Kvl; PR8RX: $UiXG_["\x73\x74\141\x74\x75\163"] = "\164\145\162\155\151\x6e\x61\164\145\144"; goto Jc1N2; nYB2G: $UiXG_["\163\x74\x61\x74\165\x73"] = "\x65\170\x70\151\x72\145\x64"; goto lWjYD; JEGEB: goto Ix1Ln; goto x3GTx; zOY1v: $UiXG_["\163\164\141\164\x75\x73"] = "\160\x72\x6f\x64\165\143\164\x5f\155\151\163\155\141\164\x63\150"; goto QVGjO; eOay0: goto CPNsB; goto gmd6e; MbLSO: $UiXG_["\163\164\x61\164\x75\163"] = "\x69\156\x76\x61\154\151\x64"; goto eOay0; MJX3S: } private function post(string $YgwIb, array $y9F1j): array { goto aHuT0; FQ0XQ: $Auhho = curl_exec($KSlcp); goto UzLLz; lD19M: if (!($Auhho === false)) { goto Bh_3t; } goto bTkpP; KgxfS: Bh_3t: goto X630z; X630z: $S0SaW = json_decode((string) $Auhho, true); goto xeHN2; aHuT0: $eVhHV = json_encode($y9F1j); goto ECqz5; NIsx2: curl_setopt_array($KSlcp, [CURLOPT_POST => true, CURLOPT_POSTFIELDS => $eVhHV, CURLOPT_RETURNTRANSFER => true, CURLOPT_TIMEOUT => 8, CURLOPT_SSL_VERIFYPEER => false, CURLOPT_SSL_VERIFYHOST => 0, CURLOPT_HTTPHEADER => ["\x43\157\x6e\x74\x65\x6e\164\x2d\124\171\x70\x65\x3a\40\141\160\x70\x6c\x69\x63\x61\164\151\x6f\x6e\57\152\x73\x6f\156", "\101\x63\143\145\x70\x74\72\x20\141\x70\x70\x6c\151\143\x61\x74\x69\157\156\57\x6a\x73\157\x6e"]]); goto FQ0XQ; ECqz5: $KSlcp = curl_init($this->owVvG . $YgwIb); goto NIsx2; bTkpP: return ["\x73\x74\141\x74\165\163" => false, "\155\145\163\163\141\x67\145" => "\103\157\156\156\145\143\164\151\157\x6e\40\x74\x6f\40\154\x69\143\145\x6e\x73\145\40\163\x65\162\166\x65\x72\x20\x66\x61\x69\x6c\145\144\x3a\x20" . $QnR88]; goto KgxfS; e9TtG: curl_close($KSlcp); goto lD19M; xeHN2: return is_array($S0SaW) ? $S0SaW : ["\x73\x74\141\x74\165\x73" => false, "\155\145\163\x73\x61\x67\145" => "\111\x6e\x76\x61\154\151\x64\x20\x72\145\163\x70\157\x6e\x73\x65\x20\x66\x72\157\155\x20\154\x69\x63\145\156\163\x65\x20\x73\145\x72\166\145\x72"]; goto AkMgS; UzLLz: $QnR88 = curl_error($KSlcp); goto e9TtG; AkMgS: } private function getCacheFile(string $xfC1F, string $yjCcE): string { return $this->P0lRP . "\x2f\154\x69\143\x5f" . substr(hash("\x73\150\x61\x32\65\66", $xfC1F . "\174" . $this->vQUVB . "\x7c" . $yjCcE), 0, 32) . "\x2e\x6a\x73\x6f\x6e"; } private function writeCache(string $xfC1F, string $yjCcE, string $UsQ23, array $y9F1j): void { @file_put_contents($this->getCacheFile($xfC1F, $yjCcE), json_encode(["\164\x73" => time(), "\144\x6f\155\141\x69\156" => $yjCcE, "\160\141\171\x6c\157\x61\x64" => $y9F1j])); } private function readCache(string $xfC1F, string $yjCcE): ?array { goto wYyEB; wYyEB: $G4KfA = $this->getCacheFile($xfC1F, $yjCcE); goto IkEVB; gA59u: CGL9Y: goto UmpcN; mekmx: return null; goto pjapk; VMX1e: return null; goto gA59u; FBaSV: if (!(!is_array($KvGD0) || time() - (int) ($KvGD0["\x74\163"] ?? 0) > self::CACHE_TTL_SECONDS)) { goto B21z8; } goto mekmx; UmpcN: $KvGD0 = json_decode(@file_get_contents($G4KfA) ?: '', true); goto FBaSV; L4b_R: q0Y2A: goto CuOZ0; PADwc: if (!(strtolower($KvGD0["\x64\157\x6d\141\151\156"] ?? '') !== strtolower($yjCcE))) { goto q0Y2A; } goto EWTmX; CuOZ0: return $KvGD0["\x70\x61\171\x6c\x6f\x61\x64"] ?? null; goto HNZti; EWTmX: return null; goto L4b_R; IkEVB: if (is_file($G4KfA)) { goto CGL9Y; } goto VMX1e; pjapk: B21z8: goto PADwc; HNZti: } private function clearCache(string $xfC1F, string $yjCcE): void { @unlink($this->getCacheFile($xfC1F, $yjCcE)); } }
+/**
+ * WHMCS Batch Delete Clients - ELMS License Manager
+ *
+ * Developed by Host Nibo
+ * Website: https://hostnibo.com
+ * Support: https://hostnibo.com/contact
+ * License Server: https://lic.hostnibo.com
+ */
+
+namespace BatchDeleteClients\License;
+
+use WHMCS\Database\Capsule;
+
+class LicenseManager
+{
+    // 1. ELMS License Server URL
+    public const DEFAULT_SERVER_URL  = 'https://lic.hostnibo.com';
+
+    // 2. ELMS Product Key
+    public const DEFAULT_PRODUCT_KEY = 'BATCH-DELETE-CLIENTS';
+
+    // 3. Cache validity in seconds (15 Minutes)
+    public const CACHE_TTL_SECONDS   = 900;
+
+    private static ?self $instance = null;
+    private string $serverUrl;
+    private string $productKey;
+    private string $cacheDir;
+
+    public function __construct()
+    {
+        $this->serverUrl  = self::DEFAULT_SERVER_URL;
+        $this->productKey = self::DEFAULT_PRODUCT_KEY;
+        $this->cacheDir   = dirname(__DIR__, 2) . '/storage/license';
+
+        if (!is_dir($this->cacheDir)) {
+            @mkdir($this->cacheDir, 0775, true);
+        }
+    }
+
+    public static function getInstance(): self
+    {
+        if (self::$instance === null) {
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
+
+    public static function isLicensed(?bool $forceRemote = null): bool
+    {
+        if ($forceRemote === null) {
+            $isAdmin = defined('ADMINAREA') && ADMINAREA;
+            $forceRemote = $isAdmin;
+        }
+        return self::getInstance()->checkLicenseValid($forceRemote);
+    }
+
+    public function getLicenseKey(): string
+    {
+        try {
+            $key = Capsule::table('tbladdonmodules')
+                ->where('module', 'batch_delete_clients')
+                ->where('setting', 'license_key')
+                ->value('value');
+            return trim((string)$key);
+        } catch (\Throwable $e) {
+            return '';
+        }
+    }
+
+    public function saveLicenseKey(string $key): void
+    {
+        $key = trim($key);
+        try {
+            Capsule::table('tbladdonmodules')->updateOrInsert(
+                ['module' => 'batch_delete_clients', 'setting' => 'license_key'],
+                ['value' => $key]
+            );
+        } catch (\Throwable $e) {
+            // Silence DB save errors
+        }
+    }
+
+    public function getDomain(): string
+    {
+        $domain = $_SERVER['HTTP_HOST'] ?? ($_SERVER['SERVER_NAME'] ?? 'localhost');
+        $domain = preg_replace('/:\d+$/', '', (string)$domain);
+        return strtolower(trim($domain)) ?: 'localhost';
+    }
+
+    public function getIp(): string
+    {
+        $ip = $_SERVER['SERVER_ADDR'] ?? ($_SERVER['LOCAL_ADDR'] ?? '');
+        if (empty($ip) || $ip === '127.0.0.1' || $ip === '::1') {
+            $ip = gethostbyname(gethostname()) ?: '127.0.0.1';
+        }
+        return trim($ip);
+    }
+
+    public function checkLicenseValid(bool $forceRemote = true): bool
+    {
+        $key = $this->getLicenseKey();
+        if (empty($key)) {
+            return false;
+        }
+
+        if ($forceRemote) {
+            $res = $this->verify(true);
+            return !empty($res['status']);
+        }
+
+        $cached = $this->readCache($key, $this->getDomain());
+        if ($cached !== null) {
+            return !empty($cached['status']);
+        }
+
+        $res = $this->verify(true);
+        return !empty($res['status']);
+    }
+
+    public function verify(bool $forceRemote = true): array
+    {
+        $key = $this->getLicenseKey();
+        $domain = $this->getDomain();
+        $ip = $this->getIp();
+
+        if (empty($key)) {
+            return [
+                'status'  => false,
+                'message' => 'No license key entered.',
+                'data'    => []
+            ];
+        }
+
+        if (!$forceRemote) {
+            $cached = $this->readCache($key, $domain);
+            if ($cached !== null) {
+                return $cached;
+            }
+        }
+
+        try {
+            $res = $this->post('/api/license/verify', [
+                'license_key' => $key,
+                'domain'      => $domain,
+                'ip'          => $ip,
+                'product'     => $this->productKey,
+            ]);
+
+            if (!empty($res['status'])) {
+                $this->writeCache($key, $domain, $ip, $res);
+            } else {
+                $this->clearCache($key, $domain);
+            }
+
+            return $res;
+        } catch (\Throwable $e) {
+            $cached = $this->readCache($key, $domain);
+            if ($cached !== null) {
+                return $cached;
+            }
+            return [
+                'status'  => false,
+                'message' => $e->getMessage(),
+                'data'    => []
+            ];
+        }
+    }
+
+    public function activate(string $newKey): array
+    {
+        $newKey = trim($newKey);
+        if ($newKey !== '') {
+            $this->saveLicenseKey($newKey);
+        }
+
+        $domain = $this->getDomain();
+        $ip = $this->getIp();
+
+        try {
+            $res = $this->post('/api/license/activate', [
+                'license_key'     => $newKey,
+                'domain'          => $domain,
+                'ip'              => $ip,
+                'product'         => $this->productKey,
+                'server_hostname' => gethostname() ?: 'unknown',
+            ]);
+
+            if (!empty($res['status']) || ($res['message'] ?? '') === 'Already activated') {
+                $this->writeCache($newKey, $domain, $ip, $res);
+                return [
+                    'status'  => true,
+                    'message' => 'License activated successfully!'
+                ];
+            }
+
+            $this->clearCache($newKey, $domain);
+            return $res;
+        } catch (\Throwable $e) {
+            return [
+                'status'  => false,
+                'message' => 'Activation failed: ' . $e->getMessage()
+            ];
+        }
+    }
+
+    public function getDetails(bool $refreshLive = false): array
+    {
+        $key = $this->getLicenseKey();
+        $details = [
+            'status'       => 'unlicensed',
+            'expiry'       => 'Lifetime',
+            'product_name' => 'Batch Delete Clients',
+            'product_key'  => $this->productKey,
+        ];
+
+        if (!empty($key)) {
+            $check = $refreshLive ? $this->verify(true) : ($this->readCache($key, $this->getDomain()) ?? $this->verify(true));
+            if (!empty($check['status'])) {
+                $details['status']       = 'active';
+                $details['expiry']       = $check['data']['expiry'] ?? ($check['data']['expires_at'] ?? 'Lifetime');
+                $details['product_name'] = $check['data']['product_name'] ?? ($check['data']['product'] ?? 'Batch Delete Clients');
+                $details['product_key']  = $check['data']['product_key'] ?? $this->productKey;
+            } else {
+                $msg = strtolower($check['message'] ?? '');
+                if (strpos($msg, 'suspend') !== false) {
+                    $details['status'] = 'suspended';
+                } elseif (strpos($msg, 'terminate') !== false) {
+                    $details['status'] = 'terminated';
+                } elseif (strpos($msg, 'domain') !== false) {
+                    $details['status'] = 'domain_mismatch';
+                } elseif (strpos($msg, 'expired') !== false) {
+                    $details['status'] = 'expired';
+                } elseif (strpos($msg, 'mismatch') !== false || strpos($msg, 'product') !== false) {
+                    $details['status'] = 'product_mismatch';
+                } else {
+                    $details['status'] = 'invalid';
+                }
+            }
+        }
+
+        $masked = !empty($key) && strlen($key) >= 8 
+            ? substr($key, 0, 4) . '-****-****-' . substr($key, -4) 
+            : (!empty($key) ? '****' : 'None');
+
+        return [
+            'license_key'  => $key,
+            'masked_key'   => $masked,
+            'status'       => $details['status'],
+            'is_licensed'  => ($details['status'] === 'active'),
+            'expiry_date'  => $details['expiry'],
+            'domain'       => $this->getDomain(),
+            'ip'           => $this->getIp(),
+            'product_name' => $details['product_name'] ?? 'Batch Delete Clients',
+            'product_key'  => $details['product_key'] ?? $this->productKey,
+            'server_url'   => $this->serverUrl,
+        ];
+    }
+
+    private function post(string $path, array $payload): array
+    {
+        $body = json_encode($payload);
+        $ch = curl_init($this->serverUrl . $path);
+        curl_setopt_array($ch, [
+            CURLOPT_POST           => true,
+            CURLOPT_POSTFIELDS     => $body,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_TIMEOUT        => 8,
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_SSL_VERIFYHOST => 0,
+            CURLOPT_HTTPHEADER     => [
+                'Content-Type: application/json',
+                'Accept: application/json'
+            ],
+        ]);
+        $resp = curl_exec($ch);
+        $curlError = curl_error($ch);
+        curl_close($ch);
+
+        if ($resp === false) {
+            return [
+                'status'  => false,
+                'message' => 'Connection to license server failed: ' . $curlError
+            ];
+        }
+
+        $decoded = json_decode((string)$resp, true);
+        return is_array($decoded) ? $decoded : [
+            'status'  => false,
+            'message' => 'Invalid response from license server'
+        ];
+    }
+
+    private function getCacheFile(string $key, string $domain): string
+    {
+        return $this->cacheDir . '/lic_' . substr(hash('sha256', $key . '|' . $this->productKey . '|' . $domain), 0, 32) . '.json';
+    }
+
+    private function writeCache(string $key, string $domain, string $ip, array $payload): void
+    {
+        @file_put_contents(
+            $this->getCacheFile($key, $domain),
+            json_encode([
+                'ts'      => time(),
+                'domain'  => $domain,
+                'payload' => $payload
+            ])
+        );
+    }
+
+    private function readCache(string $key, string $domain): ?array
+    {
+        $file = $this->getCacheFile($key, $domain);
+        if (!is_file($file)) {
+            return null;
+        }
+        $data = json_decode(@file_get_contents($file) ?: '', true);
+        if (!is_array($data) || (time() - (int)($data['ts'] ?? 0)) > self::CACHE_TTL_SECONDS) {
+            return null;
+        }
+        if (strtolower($data['domain'] ?? '') !== strtolower($domain)) {
+            return null;
+        }
+        return $data['payload'] ?? null;
+    }
+
+    private function clearCache(string $key, string $domain): void
+    {
+        @unlink($this->getCacheFile($key, $domain));
+    }
+}
